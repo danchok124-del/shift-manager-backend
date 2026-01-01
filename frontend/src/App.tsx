@@ -1,10 +1,12 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { ToastProvider } from './context/ToastContext'
 
 // Pages
 
 // Components
 import Layout from './components/Layout'
+import { ToastContainer } from './components/common/ToastContainer'
 import Attendance from './pages/Attendance'
 import Dashboard from './pages/Dashboard'
 import DepartmentDetail from './pages/DepartmentDetail'
@@ -68,9 +70,12 @@ function AppRoutes() {
 
 function App() {
   return (
-    <AuthProvider>
-      <AppRoutes />
-    </AuthProvider>
+    <ToastProvider>
+      <AuthProvider>
+        <AppRoutes />
+        <ToastContainer />
+      </AuthProvider>
+    </ToastProvider>
   );
 }
 

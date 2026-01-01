@@ -1,0 +1,91 @@
+@use 'variables' as *;
+
+.container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+
+  @include mobile {
+    left: 1rem;
+    right: 1rem;
+    max-width: none;
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: $surface-color;
+  border-radius: $border-radius-md;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid;
+  cursor: pointer;
+  animation: slideIn 0.3s ease-out;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.icon {
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.success {
+  border-left-color: $success-color;
+  
+  .icon {
+    color: $success-color;
+  }
+}
+
+.error {
+  border-left-color: $danger-color;
+  
+  .icon {
+    color: $danger-color;
+  }
+}
+
+.warning {
+  border-left-color: $warning-color;
+  
+  .icon {
+    color: $warning-color;
+  }
+}
+
+.info {
+  border-left-color: $info-color;
+  
+  .icon {
+    color: $info-color;
+  }
+}

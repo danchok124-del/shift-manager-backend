@@ -4,6 +4,7 @@ import { AuthFooter, AuthLayout, AuthLinks } from '../../components/auth/AuthLay
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
 import { useAuth } from '../../context/AuthContext';
+import { useToast } from '../../context/ToastContext';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ function Login() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,9 +22,12 @@ function Login() {
 
     try {
       await login(email, password);
+      showToast('success', 'Přihlášení proběhlo úspěšně!');
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Přihlášení selhalo');
+      const errorMessage = err.message || 'Přihlášení selhalo';
+      setError(errorMessage);
+      showToast('error', errorMessage);
     } finally {
       setIsLoading(false);
     }
