@@ -1,0 +1,6 @@
+# Backend-specific ignores
+dist/
+*.log
+.env
+.env.local
+.env.*.local
