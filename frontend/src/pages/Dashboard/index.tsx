@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Dashboard.scss';
 
+import { Loading } from '../../components/common/Loading';
 import { AttendanceWidget } from '../../components/dashboard/AttendanceWidget';
 import { QuickActions } from '../../components/dashboard/QuickActions';
 import { ScheduleView } from '../../components/dashboard/ScheduleView';
@@ -50,7 +51,7 @@ function Dashboard() {
   };
 
   if (isLoading) {
-    return <div className="loading">Načítání...</div>; // TODO: Common Loading component
+    return <Loading message="Načítání přehledu..." />;
   }
 
   return (

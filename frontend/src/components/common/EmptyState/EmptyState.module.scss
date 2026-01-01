@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: $surface-color;
+  border-radius: $border-radius-md;
+  border: 1px dashed $border-color;
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: $text-color;
+}
+
+.message {
+  color: $text-muted;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.action {
+  margin-top: 1rem;
+}
