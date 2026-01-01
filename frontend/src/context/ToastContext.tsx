@@ -35,7 +35,6 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     
     setToasts((prev) => [...prev, newToast]);
     
-    // Auto-dismiss after 4 seconds
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     }, 4000);

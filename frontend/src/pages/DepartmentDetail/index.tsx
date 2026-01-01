@@ -1,15 +1,14 @@
-```typescript
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Badge } from '../../components/common/Badge';
-import { Button } from '../../components/common/Button';
-import { Card, CardBody } from '../../components/common/Card';
-import { Input } from '../../components/common/Input';
-import { useAuth } from '../../context/AuthContext';
-import { useToast } from '../../context/ToastContext';
-import { api } from '../../services/api';
-import { Department, User, UserRole } from '../../types';
-import styles from './DepartmentDetail.module.scss';
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Badge } from '../../components/common/Badge'
+import { Button } from '../../components/common/Button'
+import { Card, CardBody } from '../../components/common/Card'
+import { Input } from '../../components/common/Input'
+import { useAuth } from '../../context/AuthContext'
+import { useToast } from '../../context/ToastContext'
+import { api } from '../../services/api'
+import { Department, User, UserRole } from '../../types'
+import styles from './DepartmentDetail.module.scss'
 
 function DepartmentDetail() {
   const { id } = useParams<{ id: string }>();
@@ -62,7 +61,8 @@ function DepartmentDetail() {
     try {
       await api.addUserToDepartment(Number(id), userId);
       showToast('success', 'Uživatel byl úspěšně přidán do oddělení');
-      loadDepartment();
+      loadData();
+      loadAllUsers();
     } catch (err: any) {
       const errorMessage = err.message || 'Nepodařilo se přidat uživatele';
       showToast('error', errorMessage);
@@ -70,10 +70,9 @@ function DepartmentDetail() {
   };
 
   const handleRemoveUser = async (userId: number) => {
-    try {
-      await api.removeUserFromDepartment(Number(id), userId);
+    try {\n      await api.removeUserFromDepartment(Number(id), userId);
       showToast('success', 'Uživatel byl odebrán z oddělení');
-      loadDepartment();
+      loadData();
     } catch (err: any) {
       const errorMessage = err.message || 'Nepodařilo se odebrat uživatele';
       showToast('error', errorMessage);

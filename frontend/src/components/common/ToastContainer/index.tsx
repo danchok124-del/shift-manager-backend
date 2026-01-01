@@ -1,13 +1,13 @@
-import React from 'react';
-import { useToast } from '../../context/ToastContext';
-import styles from './ToastContainer.module.scss';
+import React from 'react'
+import styles from './ToastContainer.module.scss'
+import { useToast, Toast } from '@/context/ToastContext'
 
 export const ToastContainer: React.FC = () => {
   const { toasts, removeToast } = useToast();
 
   return (
     <div className={styles.container}>
-      {toasts.map((toast) => (
+      {toasts.map((toast: Toast) => (
         <div
           key={toast.id}
           className={`${styles.toast} ${styles[toast.type]}`}
