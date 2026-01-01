@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { useToast } from '../../context/ToastContext'
 import { api } from '../../services/api'
 import { Shift, UserRole } from '../../types'
 
 function ShiftDetail() {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
   const [shift, setShift] = useState<Shift | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,18 +47,22 @@ function ShiftDetail() {
   const handleSignUp = async () => {
     try {
       await api.assignToShift(Number(id));
+      showToast('success', 'Úspěšně jste se přihlásili na směnu!');
       loadShift();
     } catch (err: any) {
-      alert(err.message || 'Nepodařilo se přihlásit');
+      const errorMessage = err.message || 'Nepodařilo se přihlásit';
+      showToast('error', errorMessage);
     }
   };
 
   const handleRemoveAssignment = async (userId: number) => {
     try {
       await api.removeFromShift(Number(id), userId);
+      showToast('success', 'Uživatel byl odhlášen ze směny');
       loadShift();
     } catch (err: any) {
-      alert(err.message || 'Nepodařilo se odhlásit');
+      const errorMessage = err.message || 'Nepodařilo se odhlásit';
+      showToast('error', errorMessage);
     }
   };
 
