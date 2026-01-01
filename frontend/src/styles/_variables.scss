@@ -1,16 +1,20 @@
-// Colors
-$primary-color: #2563eb;
-$primary-dark: #1d4ed8;
+// Colors - Refined for human feel (not overly corporate)
+$primary-color: #3b82f6;  // Slightly lighter blue, less serious
+$primary-dark: #2563eb;
+$primary-light: #dbeafe;
 $secondary-color: #64748b;
-$success-color: #10b981;
-$warning-color: #f59e0b;
+$success-color: #22c55e;  // Brighter green, more encouraging
+$warning-color: #f59e0b; 
 $danger-color: #ef4444;
-$background-color: #f8fafc;
+$info-color: #06b6d4;
+$background-color: #f8fafc; 
 $surface-color: #ffffff;
 $text-color: #1e293b;
 $white-text-color: #ffffff;
 $text-muted: #64748b;
 $border-color: #e2e8f0;
+$sidebar-bg: #f1f5f9; // Lighter sidebar, less dramatic
+$sidebar-text: #334155; // Dark text on light background
 
 // Spacing
 $spacing-xs: 0.25rem;
