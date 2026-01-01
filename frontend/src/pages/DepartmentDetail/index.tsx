@@ -1,10 +1,12 @@
+```typescript
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Badge } from '../../components/common/Badge';
 import { Button } from '../../components/common/Button';
 import { Card, CardBody } from '../../components/common/Card';
 import { Input } from '../../components/common/Input';
 import { useAuth } from '../../context/AuthContext';
+import { useToast } from '../../context/ToastContext';
 import { api } from '../../services/api';
 import { Department, User, UserRole } from '../../types';
 import styles from './DepartmentDetail.module.scss';
@@ -12,6 +14,8 @@ import styles from './DepartmentDetail.module.scss';
 function DepartmentDetail() {
   const { id } = useParams<{ id: string }>();
   const { user: currentUser } = useAuth();
+  const { showToast } = useToast();
+  const navigate = useNavigate();
   const [department, setDepartment] = useState<Department | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [allUsers, setAllUsers] = useState<User[]>([]);
@@ -52,24 +56,27 @@ function DepartmentDetail() {
     if (showAddUser) {
       loadAllUsers();
     }
-  }, [showAddUser, searchUser]);
+  }, [showAddUser, searchUser, users]); // Added 'users' to dependency array to re-filter when department users change
 
   const handleAddUser = async (userId: number) => {
     try {
       await api.addUserToDepartment(Number(id), userId);
-      loadData();
-      loadAllUsers();
+      showToast('success', 'Uživatel byl úspěšně přidán do oddělení');
+      loadDepartment();
     } catch (err: any) {
-      alert(err.message || 'Nepodařilo se přidat uživatele');
+      const errorMessage = err.message || 'Nepodařilo se přidat uživatele';
+      showToast('error', errorMessage);
     }
   };
 
   const handleRemoveUser = async (userId: number) => {
     try {
       await api.removeUserFromDepartment(Number(id), userId);
-      loadData();
+      showToast('success', 'Uživatel byl odebrán z oddělení');
+      loadDepartment();
     } catch (err: any) {
-      alert(err.message || 'Nepodařilo se odebrat uživatele');
+      const errorMessage = err.message || 'Nepodařilo se odebrat uživatele';
+      showToast('error', errorMessage);
     }
   };
 

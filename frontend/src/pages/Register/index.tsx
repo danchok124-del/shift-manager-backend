@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthLayout, AuthLinks, authStyles } from '../../components/auth/AuthLayout';
-import { Button } from '../../components/common/Button';
-import { Input } from '../../components/common/Input';
-import { api } from '../../services/api';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthLayout, AuthLinks } from '../../components/auth/AuthLayout'
+import { Button } from '../../components/common/Button'
+import { Input } from '../../components/common/Input'
+import { useToast } from '../../context/ToastContext'
+import { api } from '../../services/api'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ function Register() {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,11 +39,16 @@ function Register() {
 
     setIsLoading(true);
 
+    const { email, password, firstName, lastName } = formData;
+
     try {
-      await api.register(formData.email, formData.password, formData.firstName, formData.lastName);
-      navigate('/login', { state: { message: 'Registrace úspěšná. Nyní se můžete přihlásit.' } });
+      await api.register({ email, password, firstName, lastName });
+      showToast('success', 'Registrace proběhla úspěšně! Nyní se můžete přihlásit.');
+      navigate('/login');
     } catch (err: any) {
-      setError(err.message || 'Registrace selhala');
+      const errorMessage = err.message || 'Registrace selhala';
+      setError(errorMessage);
+      showToast('error', errorMessage);
     } finally {
       setIsLoading(false);
     }
