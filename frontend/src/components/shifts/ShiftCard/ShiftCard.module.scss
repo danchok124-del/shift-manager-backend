@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.time {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.dept {
+  color: $text-muted;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.slots {
+  font-size: 0.875rem;
+  color: $primary-color;
+}
+
+.footerContent {
+  display: flex;
+  gap: 0.5rem;
+}

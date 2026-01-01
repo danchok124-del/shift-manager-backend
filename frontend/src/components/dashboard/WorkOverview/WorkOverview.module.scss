@@ -1,0 +1,27 @@
+@use 'variables' as *;
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: $surface-color;
+  padding: 1.25rem;
+  border-radius: $border-radius-md;
+  border: 1px solid $border-color;
+  
+  &Value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+  
+  &Label {
+    font-size: 0.875rem;
+    color: $text-muted;
+  }
+}

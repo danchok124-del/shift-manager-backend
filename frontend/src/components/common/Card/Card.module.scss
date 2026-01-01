@@ -1,0 +1,41 @@
+@use 'variables' as *;
+
+.card {
+  background-color: $surface-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between; // Often useful
+  align-items: center;
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.body {
+  padding: 1.25rem;
+}
+
+.footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid $border-color;
+  background-color: $background-color;
+}
+
+@include print {
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}

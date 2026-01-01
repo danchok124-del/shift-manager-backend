@@ -1,0 +1,78 @@
+@use 'variables' as *;
+
+.container {
+  padding-bottom: 2rem;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+  
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.section {
+  margin-top: 1.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+}
+
+.userSearch {
+  margin-bottom: 1rem;
+}
+
+.searchResults {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.searchItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: $text-muted;
+    background-color: $background-color;
+  }
+
+  @include mobile {
+    th, td {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+}

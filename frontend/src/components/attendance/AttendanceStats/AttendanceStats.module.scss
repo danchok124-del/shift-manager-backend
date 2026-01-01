@@ -1,0 +1,53 @@
+@use 'variables' as *;
+
+.card {
+  background: $surface-color;
+  padding: 1.5rem;
+  border-radius: $border-radius-md;
+  border: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.title {
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  p {
+    color: $text-muted;
+    font-size: 0.875rem;
+  }
+}
+
+.total {
+  text-align: right;
+  
+  @include mobile {
+    text-align: left;
+  }
+  
+  &Label {
+    display: block;
+    color: $text-muted;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  &Value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+}

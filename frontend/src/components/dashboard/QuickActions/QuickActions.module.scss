@@ -1,0 +1,45 @@
+@use 'variables' as *;
+
+.root {
+  margin-bottom: 2rem;
+}
+
+.header {
+  margin-bottom: 1rem;
+  
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: $surface-color;
+  border-radius: $border-radius-md;
+  border: 1px solid $border-color;
+  color: inherit;
+  transition: all 0.2s;
+  text-decoration: none;
+  
+  &:hover {
+    border-color: $primary-color;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+  
+  &Icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+}

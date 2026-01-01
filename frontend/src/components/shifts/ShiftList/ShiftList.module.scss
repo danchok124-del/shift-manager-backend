@@ -1,0 +1,18 @@
+@use 'variables' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  color: $text-muted;
+  background-color: white;
+  border-radius: $border-radius;
+  border: 1px dashed $border-color;
+}

@@ -1,0 +1,107 @@
+@use 'variables' as *;
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  
+  &__header {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+  
+  &__nav {
+    list-style: none;
+    padding: 0.75rem 0;
+    flex: 1;
+    
+    li a {
+      display: block;
+      padding: 0.625rem 1.25rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.875rem;
+      transition: all 0.2s;
+      
+      &:hover {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+      }
+      
+      &.active {
+        color: white;
+        background-color: rgba(37, 99, 235, 0.5);
+        border-right: 3px solid #2563eb;
+      }
+    }
+  }
+  
+  &__divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 1rem;
+  }
+  
+  &__footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  &__user {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: white;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  &__user-name {
+    display: block;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  &__user-role {
+    margin-top: 0.25rem;
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    
+    &__nav {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.5rem;
+      
+      li a {
+        padding: 0.5rem 0.75rem;
+      }
+    }
+  }
+}
