@@ -1,7 +1,8 @@
-import React from 'react';
-import { Attendance } from '../../../types';
-import { Badge } from '../../common/Badge';
-import styles from './AttendanceList.module.scss';
+import React from 'react'
+import { Attendance } from '../../../types'
+import { Badge } from '../../common/Badge'
+import { EmptyState } from '../../common/EmptyState'
+import styles from './AttendanceList.module.scss'
 
 interface AttendanceListProps {
   records: Attendance[];
@@ -29,6 +30,16 @@ export const AttendanceList: React.FC<AttendanceListProps> = ({ records }) => {
     const hours = (new Date(clockOut).getTime() - new Date(clockIn).getTime()) / 3600000;
     return `${Math.round(hours * 100) / 100}h`;
   };
+
+  if (records.length === 0) {
+    return (
+      <EmptyState
+        icon="📊"
+        title="Žádné záznamy"
+        message="Za vybrané období nebyly nalezeny žádné záznamy o docházce."
+      />
+    );
+  }
 
   return (
     <div className={styles.tableContainer}>
@@ -58,13 +69,6 @@ export const AttendanceList: React.FC<AttendanceListProps> = ({ records }) => {
               <td>{record.shift?.title || '-'}</td>
             </tr>
           ))}
-          {records.length === 0 && (
-            <tr>
-              <td colSpan={5} className={styles.emptyState}>
-                Žádné záznamy za vybrané období
-              </td>
-            </tr>
-          )}
         </tbody>
       </table>
     </div>

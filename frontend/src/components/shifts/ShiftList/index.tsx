@@ -1,7 +1,8 @@
-import React from 'react';
-import { Shift } from '../../../types';
-import { ShiftCard } from '../ShiftCard';
-import styles from './ShiftList.module.scss';
+import React from 'react'
+import { Shift } from '../../../types'
+import { EmptyState } from '../../common/EmptyState'
+import { ShiftCard } from '../ShiftCard'
+import styles from './ShiftList.module.scss'
 
 interface ShiftListProps {
   shifts: Shift[];
@@ -11,9 +12,11 @@ interface ShiftListProps {
 export const ShiftList: React.FC<ShiftListProps> = ({ shifts, onSignUp }) => {
   if (shifts.length === 0) {
     return (
-      <div className={styles.empty}>
-        <p>Žádné směny k zobrazení</p>
-      </div>
+      <EmptyState
+        icon="📅"
+        title="Žádné směny k zobrazení"
+        message="Momentálně nejsou k dispozici žádné směny odpovídající vašim filtrům."
+      />
     );
   }
 
